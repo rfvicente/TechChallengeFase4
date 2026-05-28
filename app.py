@@ -288,11 +288,12 @@ with tab2:
         
         # Renomeia as colunas antes de calcular a correlação
         df_corr = df_corr.rename(columns=mapa_colunas_pt)
-
+        
         le = LabelEncoder()
-        for col in df_corr.columns:
-            if df_corr[col].dtype == 'object':
-                df_corr[col] = le.fit_transform(df_corr[col])
+
+        colunas_categoricas = df_corr.select_dtypes(exclude=['number']).columns
+        for col in colunas_categoricas:
+            df_corr[col] = le.fit_transform(df_corr[col])
                 
         corr = df_corr.corr()
         mask = np.triu(np.ones_like(corr, dtype=bool))

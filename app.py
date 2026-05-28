@@ -199,7 +199,7 @@ with tab2:
         "Obesidade por Gênero", 
         "Impacto do Histórico Familiar", 
         "Matriz de Correlação", 
-        "Principais Fatores (IA)"
+        "Principais Fatores (ML)"
     ]
     opcao = st.radio("Escolha a visão:", opcoes_graficos, horizontal=True)
     

@@ -35,4 +35,3 @@ O repositório está organizado de forma mais limpa em pastas específicas:
 * `Notebooks Python/`: Pasta destinada a notebooks Python com código fonte (não há notebooks presentes no momento).
 * `requirements.txt`: Lista de dependências e bibliotecas para o deploy na nuvem.
 
-> O `app.py` permanece na raiz conforme solicitado, junto com o `requirements.txt`.

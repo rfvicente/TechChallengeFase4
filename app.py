@@ -8,12 +8,7 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit.components.v1 as components
-from pathlib import Path
 from sklearn.preprocessing import LabelEncoder
-
-BASE_DIR = Path(__file__).resolve().parent
-MODEL_PATH = BASE_DIR / "Modelo ML" / "modelo_v2_techchallenge.pkl"
-DATA_PATH = BASE_DIR / "Dados" / "Obesity.csv"
 
 # 1. CONFIGURAÇÃO DA PÁGINA
 st.set_page_config(page_title="Diagnóstico de Obesidade", layout="wide")
@@ -30,11 +25,13 @@ st.markdown("""
 # 2. CARREGAMENTO DE MODELOS E DADOS
 @st.cache_resource
 def carregar_modelos():
-    return joblib.load(MODEL_PATH)
+    # Caminho atualizado para a pasta "Modelo ML"
+    return joblib.load('Modelo ML/modelo_v2_techchallenge.pkl')
 
 @st.cache_data
 def carregar_dados():
-    return pd.read_csv(DATA_PATH)
+    # Caminho atualizado para a pasta "Dados"
+    return pd.read_csv('Dados/Obesity.csv')
 
 modelo = carregar_modelos()
 df_raw = carregar_dados()
@@ -292,12 +289,14 @@ with tab2:
 
         # Renomeia as colunas antes de calcular a correlação
         df_corr = df_corr.rename(columns=mapa_colunas_pt)
-
+        
         le = LabelEncoder()
-        for col in df_corr.columns:
-            if df_corr[col].dtype == 'object':
-                df_corr[col] = le.fit_transform(df_corr[col])
-
+        
+        # CORREÇÃO: Seleciona todas as colunas não numéricas, independente da versão do Pandas
+        colunas_categoricas = df_corr.select_dtypes(exclude=['number']).columns
+        for col in colunas_categoricas:
+            df_corr[col] = le.fit_transform(df_corr[col])
+                
         corr = df_corr.corr()
         mask = np.triu(np.ones_like(corr, dtype=bool))
 

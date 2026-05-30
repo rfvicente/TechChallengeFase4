@@ -27,10 +27,12 @@ O pipeline de dados e o deploy foram construídos utilizando as seguintes ferram
 
 ## 📁 Estrutura do Repositório
 
-O repositório está organizado de forma a separar o ambiente de pesquisa/treinamento do ambiente de produção:
+O repositório está organizado de forma mais limpa em pastas específicas:
 
 * `app.py`: Código-fonte principal do aplicativo web (Front-end e lógica de inferência).
-* `modelo_v2_techchallenge.pkl`: Modelo de Machine Learning final, treinado e empacotado.
-* `Obesity.csv`: Base de dados original, utilizada para popular a aba de Dashboards Analíticos.
+* `Dados/Obesity.csv`: Base de dados original, utilizada para popular a aba de Dashboards Analíticos.
+* `Modelo ML/modelo_v2_techchallenge.pkl`: Modelo de Machine Learning final, treinado e empacotado.
+* `Notebooks Python/`: Pasta destinada a notebooks Python com código fonte (não há notebooks presentes no momento).
 * `requirements.txt`: Lista de dependências e bibliotecas para o deploy na nuvem.
-* `notebook_treinamento.ipynb`: Jupyter Notebook contendo toda a etapa de Análise Exploratória (EDA), Feature Engineering, avaliação de métricas e treinamento do modelo campeão.
+
+> O `app.py` permanece na raiz conforme solicitado, junto com o `requirements.txt`.
